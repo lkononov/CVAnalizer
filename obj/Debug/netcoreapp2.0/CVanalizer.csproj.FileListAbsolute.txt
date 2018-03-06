@@ -1,0 +1,11 @@
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\bin\Debug\netcoreapp2.0\CVanalizer.deps.json
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\bin\Debug\netcoreapp2.0\CVanalizer.runtimeconfig.json
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\bin\Debug\netcoreapp2.0\CVanalizer.runtimeconfig.dev.json
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\bin\Debug\netcoreapp2.0\CVanalizer.dll
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\obj\Debug\netcoreapp2.0\CVanalizer.csprojResolveAssemblyReference.cache
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\obj\Debug\netcoreapp2.0\CVanalizer.csproj.CoreCompileInputs.cache
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\obj\Debug\netcoreapp2.0\CVanalizer.AssemblyInfoInputs.cache
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\obj\Debug\netcoreapp2.0\CVanalizer.AssemblyInfo.cs
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\bin\Debug\netcoreapp2.0\CVanalizer.pdb
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\obj\Debug\netcoreapp2.0\CVanalizer.dll
+C:\Users\Leonid Kononov\Desktop\CoreReact\CVanalizer\CVanalizer\obj\Debug\netcoreapp2.0\CVanalizer.pdb
