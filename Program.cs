@@ -18,8 +18,7 @@ namespace CVanalizer
             var host = BuildWebHost(args);
 
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json"); 
+                .SetBasePath(Directory.GetCurrentDirectory());               
             var config = builder.Build(); 
 
             using (var scope = host.Services.CreateScope())

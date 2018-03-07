@@ -3,10 +3,8 @@ import axios from 'axios';
 
 class Registration extends Component {
     state = {
-        email: '',
         username: '',
         password: '',
-        cpassword: '',
         regRes: ''
     };
 
@@ -18,20 +16,15 @@ class Registration extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        console.log();
-        axios.post('/api/adduser', {
-            email: this.state.email,
-            username: this.state.username,
-            password: this.state.password,
-            cpassword: this.state.cpassword,
+        axios.post('/api/Registration', {
+            Login: this.state.username,
+            PasswordH: this.state.password,
         })
             .then((res) => {
-                console.log("this is res", res);
-                if (res.data === "ok") {
-                    this.props.history.push("/auth");
-                }
-                this.setState({ regRes: res.data })
-                console.log(this.state.regRes);
+                console.log("this is res", res);  
+                    this.setState({ regRes: res.data })
+                        console.log(this.state.regRes);
+                            this.props.history.push("/auth");            
             }).catch((err) => {
                 console.log(err)
             });
@@ -62,18 +55,11 @@ class Registration extends Component {
                                         <span className="input-group-text" id="inputGroup-sizing-sm">Password</span>
                                     </div>
                                     <input type="password" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="password" value={this.password} onChange={this.onChange} />
-                                </div>
-                                <div className="input-group input-group-sm mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="inputGroup-sizing-sm">Confirm password</span>
-                                    </div>
-                                    <input type="password" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="cpassword" value={this.cpassword} onChange={this.onChange} />
-                                </div>
+                                </div>                               
                                 <button className="btn btn-success w-100" type="submit">Register</button>
                             </div>
                         </form>
                     </div>
-                    {this.state.regRes}
                 </div>
             </div>
         );

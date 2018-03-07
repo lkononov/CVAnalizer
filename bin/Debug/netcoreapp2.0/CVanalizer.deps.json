@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "e531c305d00baddce899010831a73f4f436ee99a"
+    "signature": "13059257f78ee53dbea2de2d2021f320dab7a9dc"
   },
   "compilationOptions": {
     "defines": [
@@ -23,6 +23,7 @@
     ".NETCoreApp,Version=v2.0": {
       "CVanalizer/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Core": "1.4.0",
           "Microsoft.AspNetCore.All": "2.0.5",
           "Microsoft.NETCore.App": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.2"
@@ -32,6 +33,18 @@
         },
         "compile": {
           "CVanalizer.dll": {}
+        }
+      },
+      "BCrypt.Net-Core/1.4.0": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "System.Runtime.Extensions": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/BCrypt.Net-Core.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/BCrypt.Net-Core.dll": {}
         }
       },
       "Libuv/1.10.0": {
@@ -4236,6 +4249,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BCrypt.Net-Core/1.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-61fIfobQh+o1vsoLTY6abM2UnyFLGAXJSqLYAwlNMfC3445kDD57AqLrJIAOFcHsgn+T3i8tbCP0ugK5btA6Uw==",
+      "path": "bcrypt.net-core/1.4.0",
+      "hashPath": "bcrypt.net-core.1.4.0.nupkg.sha512"
     },
     "Libuv/1.10.0": {
       "type": "package",

@@ -24157,9 +24157,16 @@ var Auth = function (_React$Component) {
 
         _this.onSubmit = function (e) {
             e.preventDefault();
-            _axios2.default.post('/api/Api', {
-                username: _this.state.username,
-                password: _this.state.password
+            _axios2.default.post('/api/Login', {
+                Login: _this.state.username,
+                PasswordH: _this.state.password
+            }).then(function (res) {
+                console.log("this is res", res);
+                _this.setState({ regRes: res.data });
+                console.log(_this.state.regRes);
+                _this.props.history.push("/");
+            }).catch(function (err) {
+                console.log(err);
             });
         };
 
@@ -25163,10 +25170,8 @@ var Registration = function (_Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Registration.__proto__ || Object.getPrototypeOf(Registration)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            email: '',
             username: '',
             password: '',
-            cpassword: '',
             regRes: ''
         }, _this.onChange = function (e) {
             var state = _this.state;
@@ -25174,19 +25179,14 @@ var Registration = function (_Component) {
             _this.setState(state);
         }, _this.onSubmit = function (e) {
             e.preventDefault();
-            console.log();
-            _axios2.default.post('/api/adduser', {
-                email: _this.state.email,
-                username: _this.state.username,
-                password: _this.state.password,
-                cpassword: _this.state.cpassword
+            _axios2.default.post('/api/Registration', {
+                Login: _this.state.username,
+                PasswordH: _this.state.password
             }).then(function (res) {
                 console.log("this is res", res);
-                if (res.data === "ok") {
-                    _this.props.history.push("/auth");
-                }
                 _this.setState({ regRes: res.data });
                 console.log(_this.state.regRes);
+                _this.props.history.push("/auth");
             }).catch(function (err) {
                 console.log(err);
             });
@@ -25255,28 +25255,13 @@ var Registration = function (_Component) {
                                     _react2.default.createElement('input', { type: 'password', className: 'form-control', 'aria-label': 'Small', 'aria-describedby': 'inputGroup-sizing-sm', name: 'password', value: this.password, onChange: this.onChange })
                                 ),
                                 _react2.default.createElement(
-                                    'div',
-                                    { className: 'input-group input-group-sm mb-3' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'input-group-prepend' },
-                                        _react2.default.createElement(
-                                            'span',
-                                            { className: 'input-group-text', id: 'inputGroup-sizing-sm' },
-                                            'Confirm password'
-                                        )
-                                    ),
-                                    _react2.default.createElement('input', { type: 'password', className: 'form-control', 'aria-label': 'Small', 'aria-describedby': 'inputGroup-sizing-sm', name: 'cpassword', value: this.cpassword, onChange: this.onChange })
-                                ),
-                                _react2.default.createElement(
                                     'button',
                                     { className: 'btn btn-success w-100', type: 'submit' },
                                     'Register'
                                 )
                             )
                         )
-                    ),
-                    this.state.regRes
+                    )
                 )
             );
         }

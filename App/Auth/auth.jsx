@@ -19,11 +19,19 @@ export default class Auth extends React.Component {
 
     onSubmit = (e) => {     
         e.preventDefault();
-        axios.post('/api/Api', 
+        axios.post('/api/Login', 
         {
-            username: this.state.username,
-            password: this.state.password
-        });
+            Login: this.state.username,
+            PasswordH: this.state.password,
+            })
+            .then((res) => {
+                console.log("this is res", res);
+                this.setState({ regRes: res.data })
+                console.log(this.state.regRes);
+                this.props.history.push("/");
+            }).catch((err) => {
+                console.log(err)
+            });
         
     }
     render() {
