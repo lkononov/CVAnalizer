@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 export default class Auth extends React.Component {
     constructor() {
@@ -18,20 +19,40 @@ export default class Auth extends React.Component {
     }
 
     onSubmit = (e) => {     
+        const cookies = new Cookies();
         e.preventDefault();
-        axios.post('/api/Login', 
-        {
-            Login: this.state.username,
-            PasswordH: this.state.password,
+        axios.post('/Identity/CreateToken',
+            {
+                Username: this.state.username,
+                Password: this.state.password,
             })
             .then((res) => {
                 console.log("this is res", res);
                 this.setState({ regRes: res.data })
                 console.log(this.state.regRes);
-                this.props.history.push("/");
+
+
+                //this.props.history.push("/");
             }).catch((err) => {
                 console.log(err)
-            });
+            }).then(() => {
+                axios.post('/api/Test',
+                    {
+                        Login: this.state.username,
+                        PasswordH: this.state.password,
+                    },
+                    {
+                        headers: { Authorization: "Bearer " + this.state.regRes.token }
+                    }                 
+                )
+                    .then((res) => {
+                        console.log("this is res", res);
+
+                        this.props.history.push("/");
+                    }).catch((err) => {
+                        console.log(err)
+                    });      
+            });    
         
     }
     render() {
@@ -54,7 +75,7 @@ export default class Auth extends React.Component {
                                     </div>
                                     <input type="password" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="password" value={this.password} onChange={this.onChange} />
                                 </div>
-                                <button className="btn btn-danger w-100" type="submit">Login</button>
+                                <button className="btn btn-success w-100" type="submit">Login</button>
                             </form>
                         </div>
                     </div>

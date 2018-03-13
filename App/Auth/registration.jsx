@@ -5,7 +5,7 @@ class Registration extends Component {
     state = {
         username: '',
         password: '',
-        regRes: ''
+        regRes: '',
     };
 
     onChange = (e) => {
@@ -23,8 +23,8 @@ class Registration extends Component {
             .then((res) => {
                 console.log("this is res", res);  
                     this.setState({ regRes: res.data })
-                        console.log(this.state.regRes);
-                            this.props.history.push("/auth");            
+                        console.log(this.state.regRes);                     
+                             this.props.history.push("/auth");            
             }).catch((err) => {
                 console.log(err)
             });
@@ -55,7 +55,7 @@ class Registration extends Component {
                                         <span className="input-group-text" id="inputGroup-sizing-sm">Password</span>
                                     </div>
                                     <input type="password" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="password" value={this.password} onChange={this.onChange} />
-                                </div>                               
+                                </div>
                                 <button className="btn btn-success w-100" type="submit">Register</button>
                             </div>
                         </form>
