@@ -1,7 +1,9 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Registration extends Component {
+    static isPrivate = false
     state = {
         username: '',
         password: '',
@@ -24,7 +26,7 @@ class Registration extends Component {
                 console.log("this is res", res);  
                     this.setState({ regRes: res.data })
                         console.log(this.state.regRes);                     
-                             this.props.history.push("/auth");            
+                             //this.props.history.push("/auth");            
             }).catch((err) => {
                 console.log(err)
             });
@@ -37,13 +39,7 @@ class Registration extends Component {
                 <div className="row justify-content-md-center">
                     <div className="col-md-6">
                         <form onSubmit={this.onSubmit}>
-                            <div className="form-group">
-                                <div className="input-group mb-3">
-                                    <input type="email" className="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2" name="email" value={this.email} onChange={this.onChange} />
-                                    <div className="input-group-append">
-                                        <span className="input-group-text" id="basic-addon2">@example.com</span>
-                                    </div>
-                                </div>
+                            <div className="form-group">                
                                 <div className="input-group input-group-sm mb-3">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text" id="inputGroup-sizing-sm">Username</span>
@@ -57,6 +53,8 @@ class Registration extends Component {
                                     <input type="password" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="password" value={this.password} onChange={this.onChange} />
                                 </div>
                                 <button className="btn btn-success w-100" type="submit">Register</button>
+                                <p />
+                                <Link to="/auth"><button className="btn btn-primary w-100">Login</button></Link>  
                             </div>
                         </form>
                     </div>

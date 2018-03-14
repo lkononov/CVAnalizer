@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="App\Components\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

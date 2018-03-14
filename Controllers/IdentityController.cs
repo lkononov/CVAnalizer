@@ -21,19 +21,38 @@ namespace PersonalPortal.Controllers
     [Route("[controller]/[action]")]
     public class IdentityController : Controller
     {
+        cvanalizerContext db = new cvanalizerContext();
         private IConfiguration _config;
 
         public IdentityController(IConfiguration config)
         {
             _config = config;
+        }       
+
+        //Registration
+        [HttpPost]
+        public IActionResult Registration([FromBody]Users newUser)
+        {
+            var PHash = HashPass(newUser.PasswordH);
+            var AddUser = new Users { Id = Guid.NewGuid(), Login = newUser.Login, PasswordH = PHash, IsAdmin = false };
+
+            db.Users.Add(AddUser);
+            db.SaveChanges();
+
+            return Ok("success");
+        }
+        private string HashPass(string password)
+        {
+            string PHash = BCrypt.Net.BCrypt.HashPassword(password);
+            return PHash;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult CreateToken([FromBody]LoginModel login)
+        public IActionResult Login([FromBody]Users model)
         {
             IActionResult response = Unauthorized();
-            var user = Authenticate(login);
+            var user = Authenticate(model);
 
             if (user != null)
             {
@@ -44,41 +63,36 @@ namespace PersonalPortal.Controllers
             return response;
         }
 
-        private string BuildToken(UserModel user)
+        private Users Authenticate(Users model)
+        {
+            Users user = null;
+            Users User = (from Users in db.Users
+                          where Users.Login == model.Login
+                          select Users).FirstOrDefault();
+
+            if (User != null)
+            {
+                if (BCrypt.Net.BCrypt.Verify(model.PasswordH, User.PasswordH))
+                {
+                    //Response.Cookies.Append("Id", User.Id.ToString());
+                    user = User;
+                    return user;
+                }
+            }
+            return user;
+        }
+
+        private string BuildToken(Users user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
-              expires: DateTime.Now.AddMinutes(0.2),
+              expires: DateTime.Now.AddMinutes(1),
               signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        private UserModel Authenticate(LoginModel login)
-        {
-            UserModel user = null;
-
-            if (login.Username == "mario" && login.Password == "secret")
-            {
-                user = new UserModel { Name = "Mario Rossi", Email = "mario.rossi@domain.com" };
-            }
-            return user;
-        }
-
-        public class LoginModel
-        {
-            public string Username { get; set; }
-            public string Password { get; set; }
-        }
-
-        private class UserModel
-        {
-            public string Name { get; set; }
-            public string Email { get; set; }
-            public DateTime Birthdate { get; set; }
         }
     }
 }

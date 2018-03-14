@@ -1,8 +1,10 @@
 ﻿import React from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import { Link } from 'react-router-dom';
 
 export default class Auth extends React.Component {
+    static isPrivate = false
     constructor() {
         super();
         this.state = {
@@ -11,7 +13,7 @@ export default class Auth extends React.Component {
         }
         this.onSubmit = this.onSubmit.bind(this);
     }
-   
+
     onChange = (e) => {
         const state = this.state
         state[e.target.name] = e.target.value;
@@ -21,39 +23,35 @@ export default class Auth extends React.Component {
     onSubmit = (e) => {     
         const cookies = new Cookies();
         e.preventDefault();
-        axios.post('/Identity/CreateToken',
+        axios.post('/Identity/Login',
             {
-                Username: this.state.username,
-                Password: this.state.password,
+                Login: this.state.username,
+                PasswordH: this.state.password,
             })
             .then((res) => {
-                console.log("this is res", res);
                 this.setState({ regRes: res.data })
-                console.log(this.state.regRes);
-
-
-                //this.props.history.push("/");
+                cookies.set('ID', this.state.regRes.token );
+                this.props.history.push("/main");
             }).catch((err) => {
                 console.log(err)
-            }).then(() => {
-                axios.post('/api/Test',
-                    {
-                        Login: this.state.username,
-                        PasswordH: this.state.password,
-                    },
-                    {
-                        headers: { Authorization: "Bearer " + this.state.regRes.token }
-                    }                 
-                )
-                    .then((res) => {
-                        console.log("this is res", res);
+            //}).then(() => {
+            //    axios.post('/api/Test',
+            //        {
+            //            Login: this.state.username,
+            //            PasswordH: this.state.password,
+            //        },
+            //        {
+            //            headers: { Authorization: "Bearer " + this.state.regRes.token }
+            //        }                 
+            //    )
+            //        .then((res) => {
+            //            console.log("this is res", res);
 
-                        this.props.history.push("/");
-                    }).catch((err) => {
-                        console.log(err)
-                    });      
-            });    
-        
+            //            this.props.history.push("/");
+            //        }).catch((err) => {
+            //            console.log(err)
+            //        });      
+            });           
     }
     render() {
         return (
@@ -76,6 +74,8 @@ export default class Auth extends React.Component {
                                     <input type="password" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="password" value={this.password} onChange={this.onChange} />
                                 </div>
                                 <button className="btn btn-success w-100" type="submit">Login</button>
+                                <p />
+                                <Link to="/registration"><button className="btn btn-primary w-100">Registration</button></Link>                               
                             </form>
                         </div>
                     </div>
