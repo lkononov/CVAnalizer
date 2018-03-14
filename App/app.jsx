@@ -6,7 +6,6 @@ import Registration from './Auth/registration.jsx';
 import Header from './header/header.jsx';
 import Projects from './Private/Projects.jsx';
 import Route from './AuthRoute.jsx';
-import Pub from './Auth/publicroot.jsx';
 import Main from './Private/Main.jsx';
 
 export default () => 

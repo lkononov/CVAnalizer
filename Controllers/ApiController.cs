@@ -10,15 +10,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace CVanalizer.Controllers
 {
     [Route("[controller]/[action]")]
+    
     public class ApiController : Controller
     {
-       
-        [HttpPost,Authorize]
-        public async Task<bool> Test()
+        cvanalizerContext db = new cvanalizerContext();
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult GetCandidates()
         {
-            await Task.Delay(1);
-            return true;
+            List<Candidate> cands = db.Candidate.ToList(); 
+
+            return Json(cands);
         }
-        //Password hashing
     }
 }
