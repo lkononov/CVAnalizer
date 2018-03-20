@@ -30,27 +30,11 @@ export default class Auth extends React.Component {
             })
             .then((res) => {
                 this.setState({ regRes: res.data })
-                cookies.set('ID', this.state.regRes.token );
+                cookies.set('ID', this.state.regRes.token);
+                console.log(cookies.get('ID'));
                 this.props.history.push("/main");
             }).catch((err) => {
-                console.log(err)
-            //}).then(() => {
-            //    axios.post('/api/Test',
-            //        {
-            //            Login: this.state.username,
-            //            PasswordH: this.state.password,
-            //        },
-            //        {
-            //            headers: { Authorization: "Bearer " + this.state.regRes.token }
-            //        }                 
-            //    )
-            //        .then((res) => {
-            //            console.log("this is res", res);
-
-            //            this.props.history.push("/");
-            //        }).catch((err) => {
-            //            console.log(err)
-            //        });      
+                console.log(err)          
             });           
     }
     render() {
@@ -65,7 +49,7 @@ export default class Auth extends React.Component {
                                     <div className="input-group-prepend">
                                         <span className="input-group-text" id="inputGroup-sizing-sm">Username</span>
                                     </div>
-                                    <input type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="username" value={this.username} onChange={this.onChange} />
+                                    <input type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="username" value={this.state.username} onChange={this.onChange} />
                                 </div>
                                 <div className="input-group input-group-sm mb-3">
                                     <div className="input-group-prepend">

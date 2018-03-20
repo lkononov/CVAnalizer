@@ -18,7 +18,7 @@ class Registration extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        axios.post('/api/Registration', {
+        axios.post('/Identity/Registration', {
             Login: this.state.username,
             PasswordH: this.state.password,
         })

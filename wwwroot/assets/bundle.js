@@ -881,6 +881,32 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(89);
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Cookies = __webpack_require__(107);
+
+var _Cookies2 = _interopRequireDefault(_Cookies);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Cookies2.default;
+module.exports = exports['default'];
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -938,7 +964,7 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -997,7 +1023,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1064,7 +1090,7 @@ var createPath = exports.createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1133,32 +1159,6 @@ var createPath = function createPath(location) {
 
   return path;
 };
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(89);
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Cookies = __webpack_require__(107);
-
-var _Cookies2 = _interopRequireDefault(_Cookies);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Cookies2.default;
-module.exports = exports['default'];
 
 /***/ }),
 /* 14 */
@@ -1262,7 +1262,7 @@ module.exports = warning;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return locationsAreEqual; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(13);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -1344,7 +1344,7 @@ var locationsAreEqual = function locationsAreEqual(a, b) {
 
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(8);
+  var invariant = __webpack_require__(10);
   var warning = __webpack_require__(15);
   var ReactPropTypesSecret = __webpack_require__(18);
   var loggedTypeFailures = {};
@@ -1435,7 +1435,7 @@ var _valueEqual = __webpack_require__(34);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(10);
+var _PathUtils = __webpack_require__(12);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3143,9 +3143,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(9);
+var _reactRouterDom = __webpack_require__(11);
 
-var _universalCookie = __webpack_require__(13);
+var _universalCookie = __webpack_require__(9);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -3247,11 +3247,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _universalCookie = __webpack_require__(13);
+var _universalCookie = __webpack_require__(9);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
-var _axios = __webpack_require__(12);
+var _axios = __webpack_require__(8);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -3382,7 +3382,7 @@ if (process.env.NODE_ENV !== "production") {
 
 var _assign = __webpack_require__(7);
 var emptyObject = __webpack_require__(14);
-var invariant = __webpack_require__(8);
+var invariant = __webpack_require__(10);
 var warning = __webpack_require__(15);
 var emptyFunction = __webpack_require__(6);
 var checkPropTypes = __webpack_require__(17);
@@ -5038,7 +5038,7 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var React = __webpack_require__(0);
-var invariant = __webpack_require__(8);
+var invariant = __webpack_require__(10);
 var warning = __webpack_require__(15);
 var ExecutionEnvironment = __webpack_require__(27);
 var _assign = __webpack_require__(7);
@@ -20592,7 +20592,7 @@ var _reactDom = __webpack_require__(26);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(9);
+var _reactRouterDom = __webpack_require__(11);
 
 var _auth = __webpack_require__(88);
 
@@ -20717,7 +20717,7 @@ BrowserRouter.propTypes = {
 
 
 var emptyFunction = __webpack_require__(6);
-var invariant = __webpack_require__(8);
+var invariant = __webpack_require__(10);
 var warning = __webpack_require__(15);
 var assign = __webpack_require__(7);
 
@@ -21267,7 +21267,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 var emptyFunction = __webpack_require__(6);
-var invariant = __webpack_require__(8);
+var invariant = __webpack_require__(10);
 var ReactPropTypesSecret = __webpack_require__(18);
 
 module.exports = function() {
@@ -21340,7 +21340,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(19);
 
-var _PathUtils = __webpack_require__(10);
+var _PathUtils = __webpack_require__(12);
 
 var _createTransitionManager = __webpack_require__(20);
 
@@ -21717,7 +21717,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(19);
 
-var _PathUtils = __webpack_require__(10);
+var _PathUtils = __webpack_require__(12);
 
 var _createTransitionManager = __webpack_require__(20);
 
@@ -22121,7 +22121,7 @@ var _warning = __webpack_require__(1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _PathUtils = __webpack_require__(10);
+var _PathUtils = __webpack_require__(12);
 
 var _LocationUtils = __webpack_require__(19);
 
@@ -23037,7 +23037,7 @@ Redirect.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(16);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(13);
 /* unused harmony reexport parsePath */
 /* unused harmony reexport createPath */
 
@@ -23060,7 +23060,7 @@ Redirect.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(39);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -23364,7 +23364,7 @@ var createBrowserHistory = function createBrowserHistory() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(39);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -23682,7 +23682,7 @@ var createHashHistory = function createHashHistory() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__createTransitionManager__ = __webpack_require__(24);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -23867,7 +23867,7 @@ var createMemoryHistory = function createMemoryHistory() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history_PathUtils__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history_PathUtils__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history_PathUtils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_history_PathUtils__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Router__ = __webpack_require__(22);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -24304,15 +24304,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _axios = __webpack_require__(12);
+var _axios = __webpack_require__(8);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _universalCookie = __webpack_require__(13);
+var _universalCookie = __webpack_require__(9);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
-var _reactRouterDom = __webpack_require__(9);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24345,26 +24345,10 @@ var Auth = function (_React$Component) {
             }).then(function (res) {
                 _this.setState({ regRes: res.data });
                 cookies.set('ID', _this.state.regRes.token);
+                console.log(cookies.get('ID'));
                 _this.props.history.push("/main");
             }).catch(function (err) {
                 console.log(err);
-                //}).then(() => {
-                //    axios.post('/api/Test',
-                //        {
-                //            Login: this.state.username,
-                //            PasswordH: this.state.password,
-                //        },
-                //        {
-                //            headers: { Authorization: "Bearer " + this.state.regRes.token }
-                //        }                 
-                //    )
-                //        .then((res) => {
-                //            console.log("this is res", res);
-
-                //            this.props.history.push("/");
-                //        }).catch((err) => {
-                //            console.log(err)
-                //        });      
             });
         };
 
@@ -24407,7 +24391,7 @@ var Auth = function (_React$Component) {
                                             'Username'
                                         )
                                     ),
-                                    _react2.default.createElement('input', { type: 'text', className: 'form-control', 'aria-label': 'Small', 'aria-describedby': 'inputGroup-sizing-sm', name: 'username', value: this.username, onChange: this.onChange })
+                                    _react2.default.createElement('input', { type: 'text', className: 'form-control', 'aria-label': 'Small', 'aria-describedby': 'inputGroup-sizing-sm', name: 'username', value: this.state.username, onChange: this.onChange })
                                 ),
                                 _react2.default.createElement(
                                     'div',
@@ -25730,11 +25714,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _axios = __webpack_require__(12);
+var _axios = __webpack_require__(8);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _reactRouterDom = __webpack_require__(9);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25768,7 +25752,7 @@ var Registration = function (_Component) {
             _this.setState(state);
         }, _this.onSubmit = function (e) {
             e.preventDefault();
-            _axios2.default.post('/api/Registration', {
+            _axios2.default.post('/Identity/Registration', {
                 Login: _this.state.username,
                 PasswordH: _this.state.password
             }).then(function (res) {
@@ -25879,13 +25863,13 @@ var _propTypes = __webpack_require__(3);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactRouterDom = __webpack_require__(9);
+var _reactRouterDom = __webpack_require__(11);
 
-var _axios = __webpack_require__(12);
+var _axios = __webpack_require__(8);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _universalCookie = __webpack_require__(13);
+var _universalCookie = __webpack_require__(9);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -25956,6 +25940,14 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _universalCookie = __webpack_require__(9);
+
+var _universalCookie2 = _interopRequireDefault(_universalCookie);
+
+var _axios = __webpack_require__(8);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 var _header = __webpack_require__(45);
 
 var _header2 = _interopRequireDefault(_header);
@@ -25979,21 +25971,49 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Main = function (_React$Component) {
     _inherits(Main, _React$Component);
 
-    function Main() {
+    function Main(props) {
         _classCallCheck(this, Main);
 
-        return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+
+        _this.state = {
+            Candidates: []
+        };
+        return _this;
     }
 
     _createClass(Main, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            var cookies = new _universalCookie2.default();
+            var token = cookies.get('ID');
+
+            var url = '/Api/GetCandidates';
+            var params = { name: name };
+            var config = {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            };
+
+            _axios2.default.post(url, params, config).then(function (res) {
+                console.log(res);
+                _this2.setState({ Candidates: res.data });
+                console.log(_this2.state.Candidates);
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'container-fluid' },
                 _react2.default.createElement(_header2.default, null),
-                _react2.default.createElement(_Candidates2.default, null),
-                _react2.default.createElement(_Projects2.default, null)
+                _react2.default.createElement(_Candidates2.default, { candidates: this.state.Candidates })
             );
         }
     }]);
@@ -26022,11 +26042,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _universalCookie = __webpack_require__(13);
+var _universalCookie = __webpack_require__(9);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
-var _axios = __webpack_require__(12);
+var _axios = __webpack_require__(8);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -26046,59 +26066,297 @@ var Candidates = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Candidates.__proto__ || Object.getPrototypeOf(Candidates)).call(this, props));
 
+        _this.handleChange = function (e) {
+            if (_this.state.checked) {
+                console.log("unchecked");
+                _this.setState({ checked: false });
+                _this.setState({ disabled: true });
+            } else {
+                console.log("checked");
+                _this.setState({ checked: true });
+                _this.setState({ disabled: false });
+            }
+        };
+
+        _this.NextCandidate = function (e) {
+            _this.setState({ checked: false });
+            _this.setState({ disabled: true });
+        };
+
         _this.state = {
-            Candidates: []
+            checked: false,
+            disabled: true
         };
         return _this;
     }
 
     _createClass(Candidates, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            var _this2 = this;
-
-            var cookies = new _universalCookie2.default();
-            var token = cookies.get('ID');
-
-            //const axiosInstance = axios.create({
-            //    baseURL: process.env.REACT_APP_BACKEND_HOST,
-            //    headers: { Authorization: `Bearer ${this.$store.state.token}` },
-            //});
-            var url = '/Api/GetCandidates';
-            var params = { name: name };
-            var config = {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
-            };
-
-            _axios2.default.post(url, params, config).then(function (res) {
-                console.log(res);
-                _this2.setState({ Candidates: res.data });
-                console.log(_this2.state.Candidates);
-            }).catch(function (err) {
-                console.log(err);
-            });
-
-            //console.log('ID');
-
-            //axios.post('/Api/GetCandidates', {
-            //    headers: {
-            //        'Authorization': `Bearer ${this.state.tokin}`
-            //    }
-            //})
-            //    .then((res) => {
-            //        console.log(res)
-            //        this.setState({ Candidates: res.data })
-            //        console.log(this.state.Candidates)
-            //    }).catch((err) => {
-            //        console.log(err)
-            //    });
-        }
-    }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('div', null);
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { id: 'accordion' },
+                    this.props.candidates.map(function (candidate, key) {
+                        return _react2.default.createElement(
+                            'div',
+                            { className: 'card', key: key },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'card-header', id: 'headingOne' },
+                                _react2.default.createElement(
+                                    'h5',
+                                    { className: 'mb-0' },
+                                    _react2.default.createElement(
+                                        'button',
+                                        { className: 'btn btn-link', 'data-toggle': 'collapse', 'data-target': "#" + candidate.id, 'aria-expanded': 'true', 'aria-controls': 'collapseOne', onClick: _this2.NextCandidate },
+                                        candidate.name,
+                                        ' ',
+                                        candidate.sname
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { id: candidate.id, className: 'collapse', 'aria-labelledby': 'headingOne', 'data-parent': '#accordion' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'card-body' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'row' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'col-md-3' },
+                                            _react2.default.createElement(
+                                                'h5',
+                                                null,
+                                                ' Cridentials '
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'Name'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.name, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'Ser Name'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.sname, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'Project'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.project, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'Team'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.team, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'col-md-2' },
+                                            _react2.default.createElement(
+                                                'h5',
+                                                null,
+                                                ' Object-oriented '
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'Python'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.piton, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'Java'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.java, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'C#'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.cisharp, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'col-md-2' },
+                                            _react2.default.createElement(
+                                                'h5',
+                                                null,
+                                                ' Imperative '
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'Pascal'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.pascal, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'PHP'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.php, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'GO'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.go, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'col-md-2' },
+                                            _react2.default.createElement(
+                                                'h5',
+                                                null,
+                                                ' Front-End '
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'Angular'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.angular, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'React'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.react, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'input-group mb-3' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'input-group-prepend' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'input-group-text' },
+                                                        'JQery'
+                                                    )
+                                                ),
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.jquery, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                            )
+                                        )
+                                    ),
+                                    _react2.default.createElement('hr', null),
+                                    _react2.default.createElement('input', { type: 'checkbox', onClick: _this2.handleChange, checked: _this2.state.checked }),
+                                    ' Change Candidate data'
+                                )
+                            )
+                        );
+                    })
+                )
+            );
         }
     }]);
 

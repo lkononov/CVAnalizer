@@ -6,7 +6,11 @@
 
   <ItemGroup>
     <Folder Include="App\Components\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="Content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\styles.css" />
   </ItemGroup>
 
   <ItemGroup>

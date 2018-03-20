@@ -7,55 +7,192 @@ export default class Candidates extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Candidates: [],
+            checked: false,
+            disabled: true
         }
     }
-    
 
-    componentWillMount() {
-        const cookies = new Cookies();
-        const token = cookies.get('ID');
-        
-        //const axiosInstance = axios.create({
-        //    baseURL: process.env.REACT_APP_BACKEND_HOST,
-        //    headers: { Authorization: `Bearer ${this.$store.state.token}` },
-        //});
-        const url = `/Api/GetCandidates`;
-        const params = { name };
-        const config = {
-            headers: {
-                'Authorization': 'Bearer ' + token
-            }
-        };
+    handleChange = (e) => {
+        if (this.state.checked) {
+            console.log("unchecked")
+            this.setState({ checked: false });
+            this.setState({ disabled: true });
+        }
+        else {
+            console.log("checked")
+            this.setState({ checked: true });
+            this.setState({ disabled: false });
+        }
+    }
 
-        axios.post(url, params, config)
-             .then((res) => {
-                console.log(res)
-                this.setState({ Candidates: res.data })
-                console.log(this.state.Candidates)
-            }).catch((err) => {
-                console.log(err)
-            });
-        
-        //console.log('ID');
-
-        //axios.post('/Api/GetCandidates', {
-        //    headers: {
-        //        'Authorization': `Bearer ${this.state.tokin}`
-        //    }
-        //})
-        //    .then((res) => {
-        //        console.log(res)
-        //        this.setState({ Candidates: res.data })
-        //        console.log(this.state.Candidates)
-        //    }).catch((err) => {
-        //        console.log(err)
-        //    });
+    NextCandidate = (e) => {
+        this.setState({ checked: false });
+        this.setState({ disabled: true });
     }
 
     render() {
         return (
-            <div>
+            <div >                    
+                <div id="accordion">
+                    {this.props.candidates.map(((candidate, key) =>
+                        <div className="card" key={key}>
+                            <div className="card-header" id="headingOne">
+                                <h5 className="mb-0">
+                                    <button className="btn btn-link" data-toggle="collapse" data-target={"#" + candidate.id} aria-expanded="true" aria-controls="collapseOne" onClick={this.NextCandidate}>
+                                        {candidate.name} {candidate.sname}
+                                </button>
+                            </h5>
+                        </div>
+
+                            <div id={candidate.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div className="card-body">
+                                    <div className="row">
+
+                                        <div className="col-md-3">
+                                            <h5> Cridentials </h5>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        Name
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.name} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        Ser Name
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.sname} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        Project 
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.project} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div> 
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        Team
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.team} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+                                        </div>
+
+                                        <div className="col-md-2">
+                                            <h5> Object-oriented </h5>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        Python
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.piton} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        Java
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.java} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        C#
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.cisharp} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                        </div>
+
+                                        <div className="col-md-2">
+                                            <h5> Imperative </h5>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        Pascal
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.pascal} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        PHP
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.php} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        GO
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.go} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                        </div>
+
+                                        <div className="col-md-2">
+                                            <h5> Front-End </h5>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        Angular
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.angular} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        React
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.react} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                            <div className="input-group mb-3">
+                                                <div className="input-group-prepend">
+                                                    <div className="input-group-text">
+                                                        JQery
+                                                    </div>
+                                                </div>
+                                                <input type="text" className="form-control" placeholder={candidate.jquery} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    <input type="checkbox" onClick={this.handleChange} checked={this.state.checked} /> Change Candidate data
+                                </div>
+                            </div>
+                        </div>
+                        ))
+                    } 
+                </div>                                                                                    
             </div>
         );
     }

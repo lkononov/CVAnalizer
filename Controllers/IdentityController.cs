@@ -4,9 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
 using System.IdentityModel.Tokens.Jwt;
-
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -89,7 +87,7 @@ namespace PersonalPortal.Controllers
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
-              expires: DateTime.Now.AddMinutes(10000),
+              expires: DateTime.Now.AddMinutes(100),
               signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
