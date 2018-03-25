@@ -6,13 +6,9 @@ namespace CVanalizer.Models
 {
     public partial class cvanalizerContext : DbContext
     {
-        public virtual DbSet<Candidate> Candidate { get; set; }
-        public virtual DbSet<Front> Front { get; set; }
-        public virtual DbSet<ObjectO> ObjectO { get; set; }
-        public virtual DbSet<Project> Project { get; set; }
-        public virtual DbSet<Rel> Rel { get; set; }
+        public virtual DbSet<Applicant> Applicant { get; set; }
         public virtual DbSet<Skills> Skills { get; set; }
-        public virtual DbSet<Team> Team { get; set; }
+        public virtual DbSet<Technologies> Technologies { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -25,88 +21,45 @@ namespace CVanalizer.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Candidate>(entity =>
+            modelBuilder.Entity<Applicant>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.HasKey(e => e.Uid);
+
+                entity.Property(e => e.Uid).HasColumnName("UID");
 
                 entity.Property(e => e.Name).IsRequired();
 
-                entity.Property(e => e.Sname)
-                    .IsRequired()
-                    .HasColumnName("SName");
-
-                entity.HasOne(d => d.SkillNavigation)
-                    .WithMany(p => p.Candidate)
-                    .HasForeignKey(d => d.Skill)
-                    .HasConstraintName("FK_Candidate_Skills");
-
-                entity.HasOne(d => d.TeamNavigation)
-                    .WithMany(p => p.Candidate)
-                    .HasForeignKey(d => d.Team)
-                    .HasConstraintName("FK_Candidate_Team");
-            });
-
-            modelBuilder.Entity<Front>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.JQuery).HasColumnName("jQuery");
-            });
-
-            modelBuilder.Entity<ObjectO>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.C).HasColumnName("C#");
-            });
-
-            modelBuilder.Entity<Project>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Name).IsRequired();
-
-                entity.HasOne(d => d.TeamNavigation)
-                    .WithMany(p => p.Project)
-                    .HasForeignKey(d => d.Team)
-                    .HasConstraintName("FK_Project_Team");
-            });
-
-            modelBuilder.Entity<Rel>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Go).HasColumnName("GO");
-
-                entity.Property(e => e.Php).HasColumnName("PHP");
-            });
-
+                entity.Property(e => e.SerName).IsRequired();
+            });          
+       
             modelBuilder.Entity<Skills>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.HasOne(d => d.FrontNavigation)
-                    .WithMany(p => p.Skills)
-                    .HasForeignKey(d => d.Front)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Skills_Front");
+                entity.Property(e => e.Tid).HasColumnName("TID");
 
-                entity.HasOne(d => d.ObjectONavigation)
-                    .WithMany(p => p.Skills)
-                    .HasForeignKey(d => d.ObjectO)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Skills_ObjectO");
+                entity.Property(e => e.Uid).HasColumnName("UID");
 
-                entity.HasOne(d => d.RelNavigation)
+                entity.HasOne(d => d.T)
                     .WithMany(p => p.Skills)
-                    .HasForeignKey(d => d.Rel)
+                    .HasForeignKey(d => d.Tid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Skills_Rel");
+                    .HasConstraintName("FK_Skills_Technologies");
+
+                entity.HasOne(d => d.U)
+                    .WithMany(p => p.Skills)
+                    .HasForeignKey(d => d.Uid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Skills_Applicant");
             });
 
-            modelBuilder.Entity<Team>(entity =>
+            modelBuilder.Entity<Technologies>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.HasKey(e => e.Tid);
+
+                entity.Property(e => e.Tid).HasColumnName("TID");
+
+                entity.Property(e => e.Name).IsRequired();
             });
 
             modelBuilder.Entity<Users>(entity =>

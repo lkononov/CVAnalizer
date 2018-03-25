@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using CVanalizer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace CVanalizer.Controllers
 {
@@ -17,38 +19,63 @@ namespace CVanalizer.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult GetCandidates()
+        public IActionResult GetCandidates([FromBody]TName name)
         {
-            var Candidate = (from c in db.Candidate
-                              join p in db.Project
-                              on c.Team equals p.Team
-                              join o in db.ObjectO
-                              on c.Skill equals o.Id
-                              join r in db.Rel
-                              on c.Skill equals r.Id
-                              join f in db.Front
-                              on c.Skill equals f.Id
-                              join t in db.Team
-                              on c.Team equals t.Id
-                              select new
-                                  {
-                                    id = c.Id,
-                                    name = c.Name,
-                                    sname = c.Sname,
-                                    cisharp = o.C,
-                                    java = o.Java,
-                                    piton = o.Python,
-                                    php = r.Php,
-                                    pascal = r.Pascal,
-                                    go = r.Go,
-                                    react = f.React,
-                                    jquery = f.JQuery,
-                                    angular = f.Angular,
-                                    project = p.Name,
-                                    team = t.Name,
-                                  }
-                              ).ToList();
+
+            //var appl = db.Applicant.ToList();
+            //var skill = db.Skills.ToList();
+            //var tech = db.Technologies.ToList();
+            //var clist = new List<IList>();
+
+
+            var Candidate = (from t in db.Technologies
+                             join s in db.Skills
+                             on t.Tid equals s.Tid
+                             join a in db.Applicant
+                             on s.Uid equals a.Uid
+                             select new
+                             {
+                                 uid = a.Uid,
+                                 uName = a.Name,
+                                 suName = a.SerName,
+                                 portfolio = a.Portfolio,
+
+                                 exp = s.Experience,
+
+                                 tName = t.Name,
+                                 tGroup = t.Category,
+                                 tId = t.Tid
+                             }
+                              ).ToArray();
+
+            //foreach(var uid in Candidate)
+            //{
+            //    var Applicants = (from t in db.Technologies
+            //                     join s in db.Skills
+            //                     on t.Tid equals s.Tid
+            //                     join a in db.Applicant
+            //                     on s.Uid equals a.Uid
+            //                     select new
+            //                     {
+            //                         uid = a.Uid,
+            //                         uname = a.Name,
+            //                         suname = a.SerName,
+            //                         portfolio = a.Portfolio,
+
+            //                         exp = s.Experience,
+
+            //                         tname = t.Name,
+            //                         tgroup = t.Category,
+            //                         tid = t.Tid
+            //                     }
+            //                      ).ToList();
+            //}
+            //j.Add(Candidate);
             return Json(Candidate);
+        }
+        public class TName
+        {
+            public string tname { get; set; }
         }
     }
 }

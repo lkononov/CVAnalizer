@@ -25983,18 +25983,20 @@ var Main = function (_React$Component) {
     }
 
     _createClass(Main, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
             var _this2 = this;
 
             var cookies = new _universalCookie2.default();
             var token = cookies.get('ID');
-
+            var params = { tname: "Java" };
             var url = '/Api/GetCandidates';
-            var params = { name: name };
             var config = {
                 headers: {
                     'Authorization': 'Bearer ' + token
+                },
+                body: {
+                    tname: "Java"
                 }
             };
 
@@ -26004,11 +26006,46 @@ var Main = function (_React$Component) {
                 console.log(_this2.state.Candidates);
             }).catch(function (err) {
                 console.log(err);
+                cookies.remove('ID');
             });
         }
     }, {
         key: 'render',
         value: function render() {
+            if (this.state.Candidates.length !== 0) {
+                var cc = this.state.Candidates;
+
+                var filteredCandidates = [];
+
+                for (var i = 0; i < cc.length; i++) {
+
+                    if (filteredCandidates.filter(function (c) {
+                        return c.uid === cc[i].uid;
+                    }).length === 0) {
+                        var cs = cc.filter(function (c) {
+                            if (c.uid === cc[i].uid) {
+                                return true;
+                            }
+                            return false;
+                        });
+
+                        var nc = {
+                            uid: cs[0].uid,
+                            name: cs[0].uName,
+                            sname: cs[0].suName,
+                            tech: cs.map(function (c) {
+                                var tc = { tname: c.tName, exp: c.exp };
+                                return tc;
+                            })
+                        };
+
+                        filteredCandidates.push(nc);
+                    }
+                }
+
+                console.log(filteredCandidates);
+            }
+
             return _react2.default.createElement(
                 'div',
                 { className: 'container-fluid' },
@@ -26085,7 +26122,8 @@ var Candidates = function (_React$Component) {
 
         _this.state = {
             checked: false,
-            disabled: true
+            disabled: true,
+            sorted: []
         };
         return _this;
     }
@@ -26113,16 +26151,16 @@ var Candidates = function (_React$Component) {
                                     { className: 'mb-0' },
                                     _react2.default.createElement(
                                         'button',
-                                        { className: 'btn btn-link', 'data-toggle': 'collapse', 'data-target': "#" + candidate.id, 'aria-expanded': 'true', 'aria-controls': 'collapseOne', onClick: _this2.NextCandidate },
-                                        candidate.name,
+                                        { className: 'btn btn-link', 'data-toggle': 'collapse', 'data-target': "#" + candidate.uid, 'aria-expanded': 'true', 'aria-controls': 'collapseOne', onClick: _this2.NextCandidate },
+                                        candidate.uName,
                                         ' ',
-                                        candidate.sname
+                                        candidate.suName
                                     )
                                 )
                             ),
                             _react2.default.createElement(
                                 'div',
-                                { id: candidate.id, className: 'collapse', 'aria-labelledby': 'headingOne', 'data-parent': '#accordion' },
+                                { id: candidate.uid, className: 'collapse', 'aria-labelledby': 'headingOne', 'data-parent': '#accordion' },
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'card-body' },
@@ -26149,7 +26187,7 @@ var Candidates = function (_React$Component) {
                                                         'Name'
                                                     )
                                                 ),
-                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.name, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.uName, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
                                             ),
                                             _react2.default.createElement(
                                                 'div',
@@ -26163,7 +26201,7 @@ var Candidates = function (_React$Component) {
                                                         'Ser Name'
                                                     )
                                                 ),
-                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.sname, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.suName, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
                                             ),
                                             _react2.default.createElement(
                                                 'div',
@@ -26177,7 +26215,7 @@ var Candidates = function (_React$Component) {
                                                         'Project'
                                                     )
                                                 ),
-                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.project, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.exp, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
                                             ),
                                             _react2.default.createElement(
                                                 'div',
@@ -26191,7 +26229,7 @@ var Candidates = function (_React$Component) {
                                                         'Team'
                                                     )
                                                 ),
-                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.team, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
+                                                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: candidate.tName, 'aria-label': 'Text input with checkbox', disabled: _this2.state.disabled })
                                             )
                                         ),
                                         _react2.default.createElement(

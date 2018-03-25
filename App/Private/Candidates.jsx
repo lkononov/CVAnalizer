@@ -8,7 +8,8 @@ export default class Candidates extends React.Component {
         super(props);
         this.state = {
             checked: false,
-            disabled: true
+            disabled: true,
+            sorted: []
         }
     }
 
@@ -38,13 +39,13 @@ export default class Candidates extends React.Component {
                         <div className="card" key={key}>
                             <div className="card-header" id="headingOne">
                                 <h5 className="mb-0">
-                                    <button className="btn btn-link" data-toggle="collapse" data-target={"#" + candidate.id} aria-expanded="true" aria-controls="collapseOne" onClick={this.NextCandidate}>
-                                        {candidate.name} {candidate.sname}
+                                    <button className="btn btn-link" data-toggle="collapse" data-target={"#" + candidate.uid} aria-expanded="true" aria-controls="collapseOne" onClick={this.NextCandidate}>
+                                        {candidate.uName} {candidate.suName}
                                 </button>
                             </h5>
                         </div>
 
-                            <div id={candidate.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div id={candidate.uid} className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div className="card-body">
                                     <div className="row">
 
@@ -57,7 +58,7 @@ export default class Candidates extends React.Component {
                                                         Name
                                                     </div>
                                                 </div>
-                                                <input type="text" className="form-control" placeholder={candidate.name} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                                <input type="text" className="form-control" placeholder={candidate.uName} aria-label="Text input with checkbox" disabled={this.state.disabled} />
                                             </div>
 
                                             <div className="input-group mb-3">
@@ -66,7 +67,7 @@ export default class Candidates extends React.Component {
                                                         Ser Name
                                                     </div>
                                                 </div>
-                                                <input type="text" className="form-control" placeholder={candidate.sname} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                                <input type="text" className="form-control" placeholder={candidate.suName} aria-label="Text input with checkbox" disabled={this.state.disabled} />
                                             </div>
 
                                             <div className="input-group mb-3">
@@ -75,7 +76,7 @@ export default class Candidates extends React.Component {
                                                         Project 
                                                     </div>
                                                 </div>
-                                                <input type="text" className="form-control" placeholder={candidate.project} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                                <input type="text" className="form-control" placeholder={candidate.exp} aria-label="Text input with checkbox" disabled={this.state.disabled} />
                                             </div> 
 
                                             <div className="input-group mb-3">
@@ -84,7 +85,7 @@ export default class Candidates extends React.Component {
                                                         Team
                                                     </div>
                                                 </div>
-                                                <input type="text" className="form-control" placeholder={candidate.team} aria-label="Text input with checkbox" disabled={this.state.disabled} />
+                                                <input type="text" className="form-control" placeholder={candidate.tName} aria-label="Text input with checkbox" disabled={this.state.disabled} />
                                             </div>
                                         </div>
 

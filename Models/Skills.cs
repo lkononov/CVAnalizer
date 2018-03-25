@@ -5,19 +5,13 @@ namespace CVanalizer.Models
 {
     public partial class Skills
     {
-        public Skills()
-        {
-            Candidate = new HashSet<Candidate>();
-        }
-
         public int Id { get; set; }
-        public int ObjectO { get; set; }
-        public int Front { get; set; }
-        public int Rel { get; set; }
+        public int Uid { get; set; }
+        public int Tid { get; set; }
+        public int Experience { get; set; }
+        public bool Ready { get; set; }
 
-        public Front FrontNavigation { get; set; }
-        public ObjectO ObjectONavigation { get; set; }
-        public Rel RelNavigation { get; set; }
-        public ICollection<Candidate> Candidate { get; set; }
+        public Technologies T { get; set; }
+        public Applicant U { get; set; }
     }
 }

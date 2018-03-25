@@ -3,17 +3,16 @@ using System.Collections.Generic;
 
 namespace CVanalizer.Models
 {
-    public partial class ObjectO
+    public partial class Technologies
     {
-        public ObjectO()
+        public Technologies()
         {
             Skills = new HashSet<Skills>();
         }
 
-        public int Id { get; set; }
-        public int? C { get; set; }
-        public int? Java { get; set; }
-        public int? Python { get; set; }
+        public string Name { get; set; }
+        public int Category { get; set; }
+        public int Tid { get; set; }
 
         public ICollection<Skills> Skills { get; set; }
     }
