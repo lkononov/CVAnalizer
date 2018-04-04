@@ -21,10 +21,10 @@ export default class SearchStack extends React.Component {
 
     handleChange = (value) => {
         this.setState({ value });
+        this.props.onChange(value)
     }
 
     render() {
-        console.log(this.state.value)
         return (
             <div className="input-group statick">
                 <div className="col-md-12">
@@ -36,7 +36,6 @@ export default class SearchStack extends React.Component {
                         onChange={this.handleChange}
                         options={this.props.technologies}
                     />
-                    <button className="btn colored" type="submit">button</button>
                 </div>
             </div>
         );

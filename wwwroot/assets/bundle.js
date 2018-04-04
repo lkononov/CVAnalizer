@@ -26079,14 +26079,59 @@ var Main = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
 
+        _this.onChange = function (value) {
+            console.log(_this.state.FilteredApplicantsSearchConst);
+            var fa = _this.state.FilteredApplicantsSearchConst;
+            var SelectedApplicants = [];
+
+            if (value.length != 0) {
+                for (var j = 0; j < fa.length; j++) {
+                    for (var i = 0; i < value.length; i++) {
+                        if (fa[j].tech.some(function (it) {
+                            return it.tid === value[i].value;
+                        })) {
+                            if (SelectedApplicants.some(function (user) {
+                                return user.uid === fa[j].uid;
+                            })) {
+                                console.log("alredy exist");
+                            } else {
+                                SelectedApplicants.push(fa[j]);
+                            }
+                        }
+                    }
+                }
+                _this.setState({ FilteredApplicants: SelectedApplicants });
+                console.log(_this.state.FilteredApplicants);
+            } else {
+                _this.setState({ FilteredApplicants: fa });
+            }
+        };
+
+        _this.ClickHandler = function (UserUid) {
+            if (UserUid.length != 0) {
+                var FindUser = _this.state.FilteredApplicantsSearchConst;
+                var GetIt = FindUser.find(function (user) {
+                    return user.uid === parseInt(UserUid);
+                });
+            }
+            var current_applicants = _this.state.applicants;
+        };
+
         _this.state = {
             Candidates: [],
+            FilteredApplicants: [],
+            FilteredApplicantsSearchConst: [],
+            FilteredApplicantsBySearch: [],
             Technologies: [],
             SortedTechnoligies: [],
-            FilteredApplicants: []
+            SelectedTechnologies: []
+
         };
         return _this;
     }
+
+    //Applicant get from db
+
 
     _createClass(Main, [{
         key: 'componentWillMount',
@@ -26111,13 +26156,18 @@ var Main = function (_React$Component) {
                 _this2.setState({ Candidates: res.data });
 
                 _this2.setState({ FilteredApplicants: _this2.FilterApplicants() });
+
+                _this2.setState({ FilteredApplicantsSearchConst: _this2.FilterApplicants() });
             }).catch(function (err) {
                 console.log(err);
                 cookies.remove('ID');
             });
-
+            //Get Technologies
             this.SearchTechnologies();
         }
+
+        //Applicants show filter
+
     }, {
         key: 'FilterApplicants',
         value: function FilterApplicants() {
@@ -26143,7 +26193,7 @@ var Main = function (_React$Component) {
                             name: cs[0].uName,
                             sname: cs[0].suName,
                             tech: cs.map(function (c) {
-                                var tc = { tname: c.tName, exp: c.exp };
+                                var tc = { tname: c.tName, exp: c.exp, tid: c.tId };
                                 return tc;
                             })
                         };
@@ -26154,6 +26204,9 @@ var Main = function (_React$Component) {
                 return filteredCandidates;
             }
         }
+
+        //Technologies search ready
+
     }, {
         key: 'sortTechnologiesForSelect',
         value: function sortTechnologiesForSelect() {
@@ -26173,6 +26226,9 @@ var Main = function (_React$Component) {
                 return filterTechnologies;
             }
         }
+
+        //Get Technologies from db
+
     }, {
         key: 'SearchTechnologies',
         value: function SearchTechnologies() {
@@ -26196,10 +26252,16 @@ var Main = function (_React$Component) {
                 cookies.remove('ID');
             });
         }
+
+        //Select Applicants by search
+
+        //Candidate Click Handler => open full info
+
     }, {
         key: 'render',
-        value: function render() {
 
+        //Render
+        value: function render() {
             return _react2.default.createElement(
                 'div',
                 { className: 'container-fluid' },
@@ -26214,13 +26276,13 @@ var Main = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'col-md-8' },
-                            _react2.default.createElement(_Candidates2.default, { applicants: this.state.FilteredApplicants })
+                            _react2.default.createElement(_Candidates2.default, { onClick: this.ClickHandler.bind(this), applicants: this.state.FilteredApplicants })
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-md-4 white' },
+                            { className: 'col-md-4 soup white' },
                             _react2.default.createElement('br', null),
-                            _react2.default.createElement(_SearchStack2.default, { technologies: this.state.SortedTechnoligies })
+                            _react2.default.createElement(_SearchStack2.default, { onChange: this.onChange.bind(this), technologies: this.state.SortedTechnoligies })
                         )
                     )
                 )
@@ -26341,6 +26403,10 @@ var Candidates = function (_React$Component) {
             _this.setState({ disabled: true });
         };
 
+        _this.handleClick = function (e) {
+            _this.props.onClick(e.currentTarget.dataset.id);
+        };
+
         _this.state = {
             checked: false,
             disabled: true,
@@ -26357,67 +26423,72 @@ var Candidates = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(
-                    'div',
-                    { id: 'accordion' },
-                    this.props.applicants.map(function (applicant, key) {
-                        return _react2.default.createElement(
+                this.props.applicants.map(function (applicant, key) {
+                    return _react2.default.createElement(
+                        'div',
+                        { onClick: _this2.handleClick, className: 'user_search_card', 'data-id': applicant.uid, key: key },
+                        _react2.default.createElement(
+                            'h5',
+                            null,
+                            _react2.default.createElement(
+                                'b',
+                                null,
+                                applicant.name,
+                                ' ',
+                                applicant.sname
+                            )
+                        ),
+                        _react2.default.createElement('hr', null),
+                        _react2.default.createElement(
                             'div',
-                            { className: 'card', key: key },
+                            { className: 'row' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'card-header', id: 'headingOne' },
+                                { className: 'col-md-3' },
                                 _react2.default.createElement(
-                                    'h5',
-                                    { className: 'mb-0' },
-                                    _react2.default.createElement(
-                                        'button',
-                                        { className: 'btn btn-link', 'data-toggle': 'collapse', 'data-target': "#" + applicant.uid, 'aria-expanded': 'true', 'aria-controls': 'collapseOne', onClick: _this2.NextCandidate },
-                                        applicant.name,
-                                        ' ',
-                                        applicant.sname
-                                    )
-                                )
+                                    'b',
+                                    null,
+                                    'Position:'
+                                ),
+                                _react2.default.createElement('p', null),
+                                ' Junior'
                             ),
                             _react2.default.createElement(
                                 'div',
-                                { id: applicant.uid, className: 'collapse', 'aria-labelledby': 'headingOne', 'data-parent': '#accordion' },
+                                { className: 'col-md-3' },
                                 _react2.default.createElement(
-                                    'div',
-                                    { className: 'card-body' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'row' },
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'col-md-3' },
-                                            _react2.default.createElement(
-                                                'h5',
-                                                null,
-                                                ' Cridentials '
-                                            ),
-                                            _react2.default.createElement(_ApplicantCard2.default, { applicant: applicant.name, disabled: _this2.state.disabled, cathegory: "Name" }),
-                                            _react2.default.createElement(_ApplicantCard2.default, { applicant: applicant.sname, disabled: _this2.state.disabled, cathegory: "Ser Name" })
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'col-md-3' },
-                                            _react2.default.createElement(
-                                                'h5',
-                                                null,
-                                                ' Skills '
-                                            ),
-                                            _react2.default.createElement(_ApplicantTechStack2.default, { applicant: applicant.tech, disabled: _this2.state.disabled })
-                                        )
-                                    ),
-                                    _react2.default.createElement('hr', null),
-                                    _react2.default.createElement('input', { type: 'checkbox', onClick: _this2.handleChange, checked: _this2.state.checked }),
-                                    ' Change Candidate data'
-                                )
+                                    'b',
+                                    null,
+                                    'Spec:'
+                                ),
+                                _react2.default.createElement('p', null),
+                                ' Full Stack'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-md-3' },
+                                _react2.default.createElement(
+                                    'b',
+                                    null,
+                                    'Age:'
+                                ),
+                                _react2.default.createElement('p', null),
+                                ' 26'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-md-3' },
+                                _react2.default.createElement(
+                                    'b',
+                                    null,
+                                    'Location:'
+                                ),
+                                _react2.default.createElement('p', null),
+                                ' Opole'
                             )
-                        );
-                    })
-                )
+                        )
+                    );
+                })
             );
         }
     }]);
@@ -26607,6 +26678,7 @@ var SearchStack = function (_React$Component) {
 
         _this.handleChange = function (value) {
             _this.setState({ value: value });
+            _this.props.onChange(value);
         };
 
         _this.state = {
@@ -26618,7 +26690,6 @@ var SearchStack = function (_React$Component) {
     _createClass(SearchStack, [{
         key: 'render',
         value: function render() {
-            console.log(this.state.value);
             return _react2.default.createElement(
                 'div',
                 { className: 'input-group statick' },
@@ -26632,12 +26703,7 @@ var SearchStack = function (_React$Component) {
                         removeSelected: false,
                         onChange: this.handleChange,
                         options: this.props.technologies
-                    }),
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'btn colored', type: 'submit' },
-                        'button'
-                    )
+                    })
                 )
             );
         }

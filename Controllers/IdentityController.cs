@@ -87,7 +87,7 @@ namespace PersonalPortal.Controllers
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
-              expires: DateTime.Now.AddMinutes(1),
+              expires: DateTime.Now.AddMinutes(1000),
               signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

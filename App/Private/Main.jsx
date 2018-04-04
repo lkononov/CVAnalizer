@@ -13,12 +13,17 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
             Candidates: [],
+            FilteredApplicants: [], 
+            FilteredApplicantsSearchConst: [],
+            FilteredApplicantsBySearch: [],
             Technologies: [],
             SortedTechnoligies: [],
-            FilteredApplicants: [],         
+            SelectedTechnologies: [],
+                    
         }
     }
 
+    //Applicant get from db
     componentWillMount() {
 
         const cookies = new Cookies();
@@ -41,15 +46,17 @@ export default class Main extends React.Component {
                
                 this.setState({ FilteredApplicants: this.FilterApplicants() });
 
+                this.setState({ FilteredApplicantsSearchConst: this.FilterApplicants() });
+
             }).catch((err) => {
                 console.log(err)
                 cookies.remove('ID')
             });
-
-        this.SearchTechnologies();
-     
+        //Get Technologies
+        this.SearchTechnologies();        
     }
 
+    //Applicants show filter
     FilterApplicants() {
         if (this.state.Candidates.length !== 0) {
             var cc = this.state.Candidates;
@@ -65,13 +72,13 @@ export default class Main extends React.Component {
                         }
                         return false;
                     });
-
+                    
                     var nc = {
                         uid: cs[0].uid,
                         name: cs[0].uName,
-                        sname: cs[0].suName,
-                        tech: cs.map(function (c) {
-                            var tc = { tname: c.tName, exp: c.exp };
+                        sname: cs[0].suName,                        
+                        tech: cs.map(function (c) {                    
+                            var tc = { tname: c.tName, exp: c.exp, tid: c.tId };
                             return tc; 
                         })
                     };
@@ -84,6 +91,7 @@ export default class Main extends React.Component {
         }       
     }
 
+    //Technologies search ready
     sortTechnologiesForSelect() {
         if (this.state.Technologies.length !== 0) {
             var st = this.state.Technologies;
@@ -102,6 +110,7 @@ export default class Main extends React.Component {
         }
     }
 
+    //Get Technologies from db
     SearchTechnologies() {
         
         const cookies = new Cookies();
@@ -125,8 +134,45 @@ export default class Main extends React.Component {
             });
     }
 
-    render() {    
-        
+    //Select Applicants by search
+    onChange = (value) => {
+        console.log(this.state.FilteredApplicantsSearchConst);
+        var fa = this.state.FilteredApplicantsSearchConst;
+        var SelectedApplicants = [];
+
+        if (value.length != 0) {
+            for (var j = 0; j < fa.length; j++) {
+                for (var i = 0; i < value.length; i++) {
+                    if (fa[j].tech.some(it => it.tid === value[i].value)) {
+                        if (SelectedApplicants.some(user => user.uid === fa[j].uid))
+                        {
+                            console.log("alredy exist");
+                        }
+                        else
+                        {
+                            SelectedApplicants.push(fa[j])
+                        }
+                    }
+                }
+            }
+            this.setState({ FilteredApplicants: SelectedApplicants })
+            console.log(this.state.FilteredApplicants)
+        }
+        else {
+            this.setState({ FilteredApplicants: fa })
+        }
+    }   
+    //Candidate Click Handler => open full info
+    ClickHandler = (UserUid) => {
+        if (UserUid.length != 0)
+        {
+            var FindUser = this.state.FilteredApplicantsSearchConst;
+            var GetIt = FindUser.find(user => user.uid === parseInt(UserUid));
+        }
+         var current_applicants = this.state.applicants;
+    }
+    //Render
+    render() {      
         return (
             <div className="container-fluid">
                 <Navbar />
@@ -135,11 +181,11 @@ export default class Main extends React.Component {
                     <br/>
                     <div className="row">
                         <div className="col-md-8">
-                            <Candidates applicants={this.state.FilteredApplicants}/>
+                            <Candidates onClick={this.ClickHandler.bind(this)} applicants={this.state.FilteredApplicants} />
                         </div>
-                        <div className="col-md-4 white">
+                        <div className="col-md-4 soup white">
                             <br />
-                            <SearchStack technologies={this.state.SortedTechnoligies} />
+                            <SearchStack onChange={this.onChange.bind(this)} technologies={this.state.SortedTechnoligies} />
                         </div>
                     </div>              
                 </div>

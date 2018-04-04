@@ -11,10 +11,9 @@ export default class Candidates extends React.Component {
         this.state = {
             checked: false,
             disabled: true,
-            sorted: []
+            sorted: [],
         }
     }
-
     handleChange = (e) => {
         if (this.state.checked) {
             console.log("unchecked")
@@ -32,51 +31,38 @@ export default class Candidates extends React.Component {
         this.setState({ checked: false });
         this.setState({ disabled: true });
     }
-
+    handleClick = (e) => {
+        this.props.onClick(e.currentTarget.dataset.id);
+    }
     render() {
         return (
-            <div >                    
-                <div id="accordion">
-                    {this.props.applicants.map(((applicant, key) =>
-                        <div className="card" key={key}>
-
-                            <div className="card-header" id="headingOne">
-                                <h5 className="mb-0">
-                                    <button className="btn btn-link" data-toggle="collapse" data-target={"#" + applicant.uid} aria-expanded="true" aria-controls="collapseOne" onClick={this.NextCandidate}>
-                                        {applicant.name} {applicant.sname}
-                                </button>
-                            </h5>
-                        </div>
-
-                        <div id={applicant.uid} className="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div className="card-body">
-                                <div className="row">
-
-                                    <div className="col-md-3">
-                                        <h5> Cridentials </h5>
-
-                                        <ApplicantCard applicant={applicant.name} disabled={this.state.disabled} cathegory={"Name"}/>
-                                        <ApplicantCard applicant={applicant.sname} disabled={this.state.disabled} cathegory={"Ser Name"} />
-
-                                    </div>
-                                       
-                                    <div className="col-md-3">
-                                        <h5> Skills </h5>   
-                                            
-                                        <ApplicantTechStack applicant={applicant.tech} disabled={this.state.disabled} />  
-                                            
-                                    </div>
-                                </div>
-
-                                <hr />
-                                <input type="checkbox" onClick={this.handleChange} checked={this.state.checked} /> Change Candidate data
-
+            <div >   
+                {this.props.applicants.map(((applicant, key) =>
+                    <div onClick={this.handleClick} className="user_search_card" data-id={applicant.uid} key={key}>
+                        <h5><b>{applicant.name} {applicant.sname}</b></h5>
+                        <hr />
+                        <div className="row">
+                            <div className="col-md-3">
+                                <b>Position:</b>
+                                <p /> Junior
+                            </div>
+                            <div className="col-md-3">
+                                <b>Spec:</b>
+                                <p /> Full Stack
+                            </div>
+                            <div className="col-md-3">
+                                <b>Age:</b>
+                                <p /> 26
+                            </div>
+                            <div className="col-md-3">
+                                <b>Location:</b>
+                                <p /> Opole
                             </div>
                         </div>
+
                     </div>
-                    ))
-                } 
-            </div>                                                                                    
+                ))
+                }                                                                                   
         </div>
         );
     }
