@@ -1,15 +1,6 @@
 ﻿import React from 'react';
 import Select from 'react-select';
 
-//const fruits = [
-//    { label: 'Banana', value: '1' },
-//    { label: 'Apple', value: '2' },
-//    { label: 'Mango', value: '3' },
-//    { label: 'Goa', value: '4' },
-//    { label: 'Grapes', value: '5' },
-//    { label: 'Pine Apple', value: '6' },
-//];
-
 export default class SearchStack extends React.Component {
     static isPrivate = true;
     constructor(props) {
@@ -26,7 +17,7 @@ export default class SearchStack extends React.Component {
 
     render() {
         return (
-            <div className="input-group statick">
+            <div className="input-group statick sticky-top">
                 <div className="col-md-12">
                     <Select
                         name="form-field-name"

@@ -5,6 +5,7 @@ import { debounce } from 'throttle-debounce';
 import Navbar from '../header/header.jsx';
 import Projects from './Projects.jsx';
 import Candidates from './Candidates.jsx';
+import ApplicantProfile from '../Applicant/ApplicantProfile.jsx';
 import SearchStack from '../Components/SearchStack.jsx';
 
 export default class Main extends React.Component {
@@ -16,10 +17,12 @@ export default class Main extends React.Component {
             FilteredApplicants: [], 
             FilteredApplicantsSearchConst: [],
             FilteredApplicantsBySearch: [],
+            FullInfoApplicant: [],
             Technologies: [],
             SortedTechnoligies: [],
             SelectedTechnologies: [],
-                    
+
+            ShowProfile: false,
         }
     }
 
@@ -164,30 +167,54 @@ export default class Main extends React.Component {
     }   
     //Candidate Click Handler => open full info
     ClickHandler = (UserUid) => {
+
+        var GetIt = [];
+        var FindUser = this.state.FilteredApplicantsSearchConst;       
         if (UserUid.length != 0)
+        {               
+            GetIt.push(FindUser.find(user => user.uid === parseInt(UserUid)));
+            console.log(GetIt)
+            this.setState({ FullInfoApplicant: GetIt }, () => {
+                this.setState({ ShowProfile: true })
+                console.log(this.state.FullInfoApplicant)
+            })           
+        }          
+    }
+    //Handle Applicant profile close
+    HandleClose = () => {
+        this.setState({ ShowProfile: false});
+    }
+    //Render IF?()
+    Render() {
+        if (this.state.ShowProfile)
         {
-            var FindUser = this.state.FilteredApplicantsSearchConst;
-            var GetIt = FindUser.find(user => user.uid === parseInt(UserUid));
+            return (
+                <ApplicantProfile HandleClose={this.HandleClose} info={this.state.FullInfoApplicant} />
+            )
         }
-         var current_applicants = this.state.applicants;
+        else
+        {
+            return (
+                <div className="row">
+                    <div className="col-md-8">
+                        <Candidates onClick={this.ClickHandler.bind(this)} applicants={this.state.FilteredApplicants} />
+                    </div>
+                    <div className="col-md-4 soup white">
+                        <br />
+                        <SearchStack onChange={this.onChange.bind(this)} technologies={this.state.SortedTechnoligies} />
+                    </div>
+                </div>              
+                )
+        }
+        
     }
     //Render
     render() {      
         return (
             <div className="container-fluid">
                 <Navbar />
-                <div className="container">
-                
-                    <br/>
-                    <div className="row">
-                        <div className="col-md-8">
-                            <Candidates onClick={this.ClickHandler.bind(this)} applicants={this.state.FilteredApplicants} />
-                        </div>
-                        <div className="col-md-4 soup white">
-                            <br />
-                            <SearchStack onChange={this.onChange.bind(this)} technologies={this.state.SortedTechnoligies} />
-                        </div>
-                    </div>              
+                <div className="container main">
+                    {this.Render()}                   
                 </div>
             </div>
         );

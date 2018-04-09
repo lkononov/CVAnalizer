@@ -45,21 +45,21 @@ export default class Auth extends React.Component {
                     <div className="row justify-content-md-center">
                         <div className="align-items-center col-md-6 ">
                             <form onSubmit={this.onSubmit}>
-                                <div className="input-group input-group-sm mb-3 ">
+                                <div className="input-group mb-3 ">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" id="inputGroup-sizing-sm">Username</span>
+                                        <span className="input-group-text" >Username</span>
                                     </div>
-                                    <input type="text" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="username" value={this.state.username} onChange={this.onChange} />
+                                    <input type="text" className="form-control"name="username" value={this.state.username} onChange={this.onChange} />
                                 </div>
-                                <div className="input-group input-group-sm mb-3">
+                                <div className="input-group mb-3">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" id="inputGroup-sizing-sm">Password</span>
+                                        <span className="input-group-text" >Password</span>
                                     </div>
-                                    <input type="password" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="password" value={this.password} onChange={this.onChange} />
+                                    <input type="password" className="form-control" name="password" value={this.password} onChange={this.onChange} />
                                 </div>
-                                <button className="btn btn-success w-100" type="submit">Login</button>
+                                <button className="btn btn-outline-primary w-100" type="submit">Login</button>
                                 <p />
-                                <Link to="/registration"><button className="btn btn-primary w-100">Registration</button></Link>                               
+                                <Link to="/registration"><button className="btn btn-outline-primary w-100">Registration</button></Link>                               
                             </form>
                         </div>
                     </div>

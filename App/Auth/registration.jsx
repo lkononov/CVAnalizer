@@ -52,9 +52,9 @@ class Registration extends Component {
                                     </div>
                                     <input type="password" className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="password" value={this.password} onChange={this.onChange} />
                                 </div>
-                                <button className="btn btn-success w-100" type="submit">Register</button>
+                                <button className="btn btn-outline-primary w-100" type="submit">Register</button>
                                 <p />
-                                <Link to="/auth"><button className="btn btn-primary w-100">Login</button></Link>  
+                                <Link to="/auth"><button className="btn btn-outline-primary w-100">Login</button></Link>  
                             </div>
                         </form>
                     </div>

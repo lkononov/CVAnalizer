@@ -16,7 +16,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <header>
-                <nav className="navbar navbar-toggleable navbar-light bg-faded navbar-expand-lg">
+                <nav className="navbar navbar-toggleable navbar-light bg-faded navbar-expand-lg ">
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

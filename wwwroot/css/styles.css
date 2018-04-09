@@ -10,14 +10,46 @@
 .colored {
     background-color: #4abfb4;
 }
-.statick{
-    height: 80vh;
+.btn-outline-primary:hover {
+    background-color: #4abfb4;
+    border-color: #4abfb4;
 }
-.navbar{
-    background-color : white;
+.btn-outline-primary {
+    border-color: #4abfb4;
+    color: #4abfb4;
+}
+.auto-heigth {
+    height: 200px;
+    max-height: none;
+}
+.statick {
+    height: 85vh;
+
+}
+.width_sto {
+    width: 100%;
+}
+.bottom {
+    position: absolute;
+    bottom: 5px;
+}
+.btn {
+    margin-bottom: 5px;
+}
+.main {
+    margin-top: 10px;
+}
+.navbar {
+    background-color: white;
 }
 .container-fluid{
     padding: 0 0 0 0;
+}
+.padding {
+    padding: -15px;
+}
+.fix-bot {
+    
 }
 .soup {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -33,4 +65,7 @@
     border-style: solid;
     border-width: 1.5px;
     border-color: #4abfb4;
+}
+.footer{
+    text-align: center;
 }
