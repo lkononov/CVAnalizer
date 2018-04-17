@@ -17,7 +17,7 @@ export default class SearchStack extends React.Component {
 
     render() {
         return (
-            <div className="input-group statick sticky-top">
+            <div className="input-group">
                 <div className="col-md-12">
                     <Select
                         name="form-field-name"

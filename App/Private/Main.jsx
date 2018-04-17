@@ -153,7 +153,7 @@ export default class Main extends React.Component {
                         }
                         else
                         {
-                            SelectedApplicants.push(fa[j])
+                            SelectedApplicants.push(fa[j]);
                         }
                     }
                 }
@@ -165,6 +165,10 @@ export default class Main extends React.Component {
             this.setState({ FilteredApplicants: fa })
         }
     }   
+    //Adittional Applicants filtering
+    AdditionalApplFilter() {
+        
+    }
     //Candidate Click Handler => open full info
     ClickHandler = (UserUid) => {
 
@@ -189,7 +193,7 @@ export default class Main extends React.Component {
         if (this.state.ShowProfile)
         {
             return (
-                <ApplicantProfile HandleClose={this.HandleClose} info={this.state.FullInfoApplicant} />
+                <ApplicantProfile HandleClose={this.HandleClose} technologies={this.state.SortedTechnoligies} info={this.state.FullInfoApplicant} />
             )
         }
         else

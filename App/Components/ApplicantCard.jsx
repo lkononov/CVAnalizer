@@ -4,10 +4,37 @@ export default class ApplicantCard extends React.Component {
     static isPrivate = true;
     constructor(props) {
         super(props);
+        this.state = {
+            shouldBeStepBack: false,
+        }
     }
 
     HandleClose = () => {
         this.props.HandleClose();
+    }
+
+    HandleEdit = () => {
+        this.props.HandleEdit();
+    }
+
+    HandleSave = () => {
+        this.props.HandleSave();
+    }
+
+    RenderOrGetBack = () => {
+        if (this.props.buttons) {
+            return (
+                <div>
+                    <button onClick={this.HandleEdit} className="btn btn-outline-primary width_sto">Close Editing</button>
+                    <button onClick={this.HandleSave} className="btn btn-outline-primary width_sto">Save changes</button>
+                </div>
+            )
+        }
+        else {
+            return (
+                <button onClick={this.HandleEdit} className="btn btn-outline-warning width_sto">Edit Profile</button>
+            )        
+        }
     }
 
     render() {
@@ -23,10 +50,8 @@ export default class ApplicantCard extends React.Component {
                     <p />Wroclaw
                     
                </div>
-               
-                    <button className="btn btn-outline-warning width_sto">Edit Profile</button>
-                    <button onClick={this.HandleClose} className="btn btn-outline-danger width_sto">Close Profile</button>
-                
+                    {this.RenderOrGetBack()}
+                    <button onClick={this.HandleClose} className="btn btn-outline-danger width_sto">Close Profile</button>                
             </div>   
         );
     }
