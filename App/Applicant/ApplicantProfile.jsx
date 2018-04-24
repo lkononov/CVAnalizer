@@ -6,7 +6,7 @@ import ApplicantCard from '../Components/ApplicantCard.jsx';
 import SearchStack from '../Components/SearchStack.jsx';
 
 export default class ApplicantProfile extends React.Component {
-    static isPrivate = true;
+    
     constructor(props) {
         super(props);
         this.state = {

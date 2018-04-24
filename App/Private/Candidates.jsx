@@ -14,6 +14,7 @@ export default class Candidates extends React.Component {
             sorted: [],
         }
     }
+
     handleChange = (e) => {
         if (this.state.checked) {
             console.log("unchecked")
@@ -31,9 +32,11 @@ export default class Candidates extends React.Component {
         this.setState({ checked: false });
         this.setState({ disabled: true });
     }
+
     handleClick = (e) => {
         this.props.onClick(e.currentTarget.dataset.id);
     }
+
     render() {
         return (
             <div >   

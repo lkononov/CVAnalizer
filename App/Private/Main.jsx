@@ -7,6 +7,7 @@ import Projects from './Projects.jsx';
 import Candidates from './Candidates.jsx';
 import ApplicantProfile from '../Applicant/ApplicantProfile.jsx';
 import SearchStack from '../Components/SearchStack.jsx';
+import SearchStackSolo from '../Components/SearchStackSolo.jsx';
 
 export default class Main extends React.Component {
     static isPrivate = true;
@@ -14,18 +15,19 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
             Candidates: [],
-            FilteredApplicants: [], 
+            FilteredApplicants: [],
+            AdittionalFilteredApplicants: [],
             FilteredApplicantsSearchConst: [],
             FilteredApplicantsBySearch: [],
             FullInfoApplicant: [],
             Technologies: [],
             SortedTechnoligies: [],
             SelectedTechnologies: [],
-
+            experience: 0,           
             ShowProfile: false,
         }
     }
-
+    
     //Applicant get from db
     componentWillMount() {
 
@@ -81,7 +83,7 @@ export default class Main extends React.Component {
                         name: cs[0].uName,
                         sname: cs[0].suName,                        
                         tech: cs.map(function (c) {                    
-                            var tc = { tname: c.tName, exp: c.exp, tid: c.tId };
+                            var tc = { tname: c.tName, exp: c.exp, tid: c.tId, tg: c.tGroup };
                             return tc; 
                         })
                     };
@@ -101,10 +103,10 @@ export default class Main extends React.Component {
 
             var filterTechnologies = [];    
             for (var i = 0; i < st.length; i++) {
-
                 var ss = {
                     label: st[i].name,
-                    value: st[i].tid
+                    value: st[i].tid,
+                    tc: st[i].category
                 };
                 filterTechnologies.push(ss);
             }
@@ -137,12 +139,24 @@ export default class Main extends React.Component {
             });
     }
 
+    //Set experience value onchange
+    expOnChange = (value) => {
+        if (value != null) {
+            this.setState({ experience: value.value })           
+        }
+        else {
+            this.setState({ experience: 0 })
+        }
+        
+    }
+
     //Select Applicants by search
     onChange = (value) => {
-        console.log(this.state.FilteredApplicantsSearchConst);
         var fa = this.state.FilteredApplicantsSearchConst;
         var SelectedApplicants = [];
-
+        var AdditionalSelectedApplicants = [];
+        var needExp = this.state.experience;
+        console.log(this.state.experience)
         if (value.length != 0) {
             for (var j = 0; j < fa.length; j++) {
                 for (var i = 0; i < value.length; i++) {
@@ -156,19 +170,29 @@ export default class Main extends React.Component {
                             SelectedApplicants.push(fa[j]);
                         }
                     }
+
+                    if (fa[j].tech.some(it => it.tg === value[i].tc && it.exp >= needExp+2)){
+                        if (SelectedApplicants.some(user => user.uid === fa[j].uid) || AdditionalSelectedApplicants.some(user => user.uid === fa[j].uid))
+                        {
+                            console.log("aditional user alredy exist");
+                        }
+                        else
+                        {
+                            AdditionalSelectedApplicants.push(fa[j]);                            
+                        }
+                    }
                 }
             }
             this.setState({ FilteredApplicants: SelectedApplicants })
-            console.log(this.state.FilteredApplicants)
+            this.setState({ AdittionalFilteredApplicants: AdditionalSelectedApplicants })
         }
-        else {
+        else
+        {
             this.setState({ FilteredApplicants: fa })
+            this.setState({ AdittionalFilteredApplicants: AdditionalSelectedApplicants })
         }
     }   
-    //Adittional Applicants filtering
-    AdditionalApplFilter() {
-        
-    }
+
     //Candidate Click Handler => open full info
     ClickHandler = (UserUid) => {
 
@@ -184,11 +208,13 @@ export default class Main extends React.Component {
             })           
         }          
     }
+
     //Handle Applicant profile close
     HandleClose = () => {
         this.setState({ ShowProfile: false});
     }
-    //Render IF?()
+
+    //Render IF?() appl prof? || search
     Render() {
         if (this.state.ShowProfile)
         {
@@ -202,16 +228,24 @@ export default class Main extends React.Component {
                 <div className="row">
                     <div className="col-md-8">
                         <Candidates onClick={this.ClickHandler.bind(this)} applicants={this.state.FilteredApplicants} />
+                        <p />                        
+                        Adittional option
+                        <hr />
+                        <p />
+                        <Candidates onClick={this.ClickHandler.bind(this)} applicants={this.state.AdittionalFilteredApplicants} />
                     </div>
                     <div className="col-md-4 soup white">
                         <br />
-                        <SearchStack onChange={this.onChange.bind(this)} technologies={this.state.SortedTechnoligies} />
+                      
+                        //search parametres for experience
+                        <SearchStackSolo onChangeS={this.onChange.bind(this)} onChange={this.expOnChange.bind(this)} technologies={this.state.SortedTechnoligies}/>                     
                     </div>
                 </div>              
                 )
         }
         
     }
+
     //Render
     render() {      
         return (
@@ -224,3 +258,5 @@ export default class Main extends React.Component {
         );
     }
 };
+
+
