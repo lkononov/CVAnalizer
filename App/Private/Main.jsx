@@ -23,7 +23,7 @@ export default class Main extends React.Component {
             Technologies: [],
             SortedTechnoligies: [],
             SelectedTechnologies: [],
-            experience: 0,           
+            experience: 0,        
             ShowProfile: false,
         }
     }
@@ -145,6 +145,7 @@ export default class Main extends React.Component {
             this.setState({ experience: value.value })           
         }
         else {
+            
             this.setState({ experience: 0 })
         }
         
@@ -155,9 +156,9 @@ export default class Main extends React.Component {
         var fa = this.state.FilteredApplicantsSearchConst;
         var SelectedApplicants = [];
         var AdditionalSelectedApplicants = [];
-        var needExp = this.state.experience;
-        console.log(this.state.experience)
-        if (value.length != 0) {
+      
+        if (value.length != 0) {        
+            console.log(this.state.experience)
             for (var j = 0; j < fa.length; j++) {
                 for (var i = 0; i < value.length; i++) {
                     if (fa[j].tech.some(it => it.tid === value[i].value)) {
@@ -170,8 +171,7 @@ export default class Main extends React.Component {
                             SelectedApplicants.push(fa[j]);
                         }
                     }
-
-                    if (fa[j].tech.some(it => it.tg === value[i].tc && it.exp >= needExp+2)){
+                    if (fa[j].tech.some(it => it.tg === value[i].tc && it.exp >= this.state.experience+2)){
                         if (SelectedApplicants.some(user => user.uid === fa[j].uid) || AdditionalSelectedApplicants.some(user => user.uid === fa[j].uid))
                         {
                             console.log("aditional user alredy exist");
@@ -235,9 +235,7 @@ export default class Main extends React.Component {
                         <Candidates onClick={this.ClickHandler.bind(this)} applicants={this.state.AdittionalFilteredApplicants} />
                     </div>
                     <div className="col-md-4 soup white">
-                        <br />
-                      
-                        //search parametres for experience
+                        <br />   
                         <SearchStackSolo onChangeS={this.onChange.bind(this)} onChange={this.expOnChange.bind(this)} technologies={this.state.SortedTechnoligies}/>                     
                     </div>
                 </div>              

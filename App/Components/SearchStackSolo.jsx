@@ -25,11 +25,13 @@ export default class SearchStackSolo extends React.Component {
     }
 
     handleChange = (value) => {
-        this.setState({ value });
+        this.setState({ value }, () => {
+            
+            this.handleChangeSkills(this.state.svalue);
+        });   
         this.props.onChange(value);
-        this.props.onChangeS(this.state.svalue);
     }
-
+    
     handleChangeSkills = (svalue) => {
         this.setState({ svalue });
         this.props.onChangeS(svalue);
@@ -42,14 +44,17 @@ export default class SearchStackSolo extends React.Component {
                 <div className="col-md-12">
                     <Select
                         name="form-field-name"
+                        placeholder="Select required technology(s)"
                         value={this.state.svalue}
                         multi
                         removeSelected={false}
                         onChange={this.handleChangeSkills}
                         options={this.props.technologies}
                     />
+                    <p/>
                     <Select
                         name="form-field-name"
+                        placeholder="Select required experience"
                         value={value}
                         removeSelected={false}
                         onChange={this.handleChange}

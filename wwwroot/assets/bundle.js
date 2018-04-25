@@ -29268,6 +29268,7 @@ var Main = function (_React$Component) {
             if (value != null) {
                 _this.setState({ experience: value.value });
             } else {
+
                 _this.setState({ experience: 0 });
             }
         };
@@ -29276,9 +29277,9 @@ var Main = function (_React$Component) {
             var fa = _this.state.FilteredApplicantsSearchConst;
             var SelectedApplicants = [];
             var AdditionalSelectedApplicants = [];
-            var needExp = _this.state.experience;
-            console.log(_this.state.experience);
+
             if (value.length != 0) {
+                console.log(_this.state.experience);
                 for (var j = 0; j < fa.length; j++) {
                     for (var i = 0; i < value.length; i++) {
                         if (fa[j].tech.some(function (it) {
@@ -29292,9 +29293,8 @@ var Main = function (_React$Component) {
                                 SelectedApplicants.push(fa[j]);
                             }
                         }
-
                         if (fa[j].tech.some(function (it) {
-                            return it.tg === value[i].tc && it.exp >= needExp + 2;
+                            return it.tg === value[i].tc && it.exp >= _this.state.experience + 2;
                         })) {
                             if (SelectedApplicants.some(function (user) {
                                 return user.uid === fa[j].uid;
@@ -29512,7 +29512,6 @@ var Main = function (_React$Component) {
                         'div',
                         { className: 'col-md-4 soup white' },
                         _react2.default.createElement('br', null),
-                        '//search parametres for experience',
                         _react2.default.createElement(_SearchStackSolo2.default, { onChangeS: this.onChange.bind(this), onChange: this.expOnChange.bind(this), technologies: this.state.SortedTechnoligies })
                     )
                 );
@@ -32897,9 +32896,11 @@ var SearchStackSolo = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (SearchStackSolo.__proto__ || Object.getPrototypeOf(SearchStackSolo)).call(this, props));
 
         _this.handleChange = function (value) {
-            _this.setState({ value: value });
+            _this.setState({ value: value }, function () {
+
+                _this.handleChangeSkills(_this.state.svalue);
+            });
             _this.props.onChange(value);
-            _this.props.onChangeS(_this.state.svalue);
         };
 
         _this.handleChangeSkills = function (svalue) {
@@ -32927,14 +32928,17 @@ var SearchStackSolo = function (_React$Component) {
                     { className: 'col-md-12' },
                     _react2.default.createElement(_reactSelect2.default, {
                         name: 'form-field-name',
+                        placeholder: 'Select required technology(s)',
                         value: this.state.svalue,
                         multi: true,
                         removeSelected: false,
                         onChange: this.handleChangeSkills,
                         options: this.props.technologies
                     }),
+                    _react2.default.createElement('p', null),
                     _react2.default.createElement(_reactSelect2.default, {
                         name: 'form-field-name',
+                        placeholder: 'Select required experience',
                         value: value,
                         removeSelected: false,
                         onChange: this.handleChange,
