@@ -21,6 +21,7 @@ export default class SearchStack extends React.Component {
                 <div className="col-md-12">
                     <Select
                         name="form-field-name"
+                        placeholder="Select new technologies"
                         value={this.state.value}
                         multi
                         removeSelected={false}

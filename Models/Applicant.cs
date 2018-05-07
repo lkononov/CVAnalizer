@@ -15,7 +15,12 @@ namespace CVanalizer.Models
         public int Team { get; set; }
         public string Portfolio { get; set; }
         public int Uid { get; set; }
+        public string Spec { get; set; }
+        public int? Age { get; set; }
+        public string Position { get; set; }
+        public int? Location { get; set; }
 
+        public Location LocationNavigation { get; set; }
         public ICollection<Skills> Skills { get; set; }
     }
 }

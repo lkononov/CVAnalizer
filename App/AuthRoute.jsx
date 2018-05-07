@@ -7,14 +7,15 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 const isAuthenticated = () => {
     if (cookies.get('ID') != null) {
+        console.log("tyc tyc tyc")
         return true;
     }
     else {
+        console.log("tyc tyc tyc22")
         return false;
     }
 };
-
-
+setTimeout(isAuthenticated, 5000);
 const PRIVATE_ROOT = '/main';
 const PUBLIC_ROOT = '/auth';
 

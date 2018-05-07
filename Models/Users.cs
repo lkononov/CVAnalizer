@@ -7,7 +7,7 @@ namespace CVanalizer.Models
     {
         public Guid Id { get; set; }
         public string Login { get; set; }
-        public string PasswordH { get; set; }
+        public string Password { get; set; }
         public bool IsAdmin { get; set; }
     }
 }

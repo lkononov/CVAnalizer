@@ -5,9 +5,10 @@ import { debounce } from 'throttle-debounce';
 import Navbar from '../header/header.jsx';
 import Projects from './Projects.jsx';
 import Candidates from './Candidates.jsx';
-import ApplicantProfile from '../Applicant/ApplicantProfile.jsx';
 import SearchStack from '../Components/SearchStack.jsx';
 import SearchStackSolo from '../Components/SearchStackSolo.jsx';
+import ApplicantProfile from '../Applicant/ApplicantProfile.jsx';
+
 
 export default class Main extends React.Component {
     static isPrivate = true;
@@ -131,8 +132,7 @@ export default class Main extends React.Component {
         axios.post(url, params, config)
             .then((res) => {
                this.setState({ Technologies: res.data })
-               this.setState({ SortedTechnoligies: this.sortTechnologiesForSelect() })
-               
+               this.setState({ SortedTechnoligies: this.sortTechnologiesForSelect() })              
             }).catch((err) => {
                 console.log(err)
                 cookies.remove('ID')
@@ -144,11 +144,9 @@ export default class Main extends React.Component {
         if (value != null) {
             this.setState({ experience: value.value })           
         }
-        else {
-            
+        else {          
             this.setState({ experience: 0 })
-        }
-        
+        }       
     }
 
     //Select Applicants by search

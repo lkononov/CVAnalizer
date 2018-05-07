@@ -26,7 +26,7 @@ export default class Auth extends React.Component {
         axios.post('/Identity/Login',
             {
                 Login: this.state.username,
-                PasswordH: this.state.password,
+                Password: this.state.password,
             })
             .then((res) => {
                 this.setState({ regRes: res.data })

@@ -25,14 +25,14 @@ namespace PersonalPortal.Controllers
         public IdentityController(IConfiguration config)
         {
             _config = config;
-        }       
+        }
 
         //Registration
         [HttpPost]
         public IActionResult Registration([FromBody]Users newUser)
         {
-            var PHash = HashPass(newUser.PasswordH);
-            var AddUser = new Users { Id = Guid.NewGuid(), Login = newUser.Login, PasswordH = PHash, IsAdmin = false };
+            var PHash = HashPass(newUser.Password);
+            var AddUser = new Users { Id = Guid.NewGuid(), Login = newUser.Login, Password = PHash, IsAdmin = false };
 
             db.Users.Add(AddUser);
             db.SaveChanges();
@@ -70,7 +70,7 @@ namespace PersonalPortal.Controllers
 
             if (User != null)
             {
-                if (BCrypt.Net.BCrypt.Verify(model.PasswordH, User.PasswordH))
+                if (BCrypt.Net.BCrypt.Verify(model.Password, User.Password))
                 {
                     //Response.Cookies.Append("Id", User.Id.ToString());
                     user = User;

@@ -57,11 +57,11 @@ namespace CVanalizer.Controllers
         {
 
             if (ModelState.IsValid)
-            {                          
-                for(int i=0;i<techs.NewTechStack.Length; i++)
+            {
+                for (int i = 0; i < techs.NewTechStack.Length; i++)
                 {
                     var Skills = db.Skills;
-                    Skills.Add(new Skills { Tid = techs.NewTechStack[i].tid, Uid = techs.NewTechStack[i].uid, Experience = techs.NewTechStack[i].exp, Ready = true});
+                    Skills.Add(new Skills { Tid = techs.NewTechStack[i].tid, Uid = techs.NewTechStack[i].uid, Experience = techs.NewTechStack[i].exp, Ready = true });
                 }
                 db.SaveChanges();
             }
@@ -69,7 +69,7 @@ namespace CVanalizer.Controllers
             {
                 return BadRequest(ModelState);
             }
-            
+
             return Ok();
         }
         public class TName

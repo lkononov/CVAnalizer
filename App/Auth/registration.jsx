@@ -20,7 +20,7 @@ class Registration extends Component {
         e.preventDefault();
         axios.post('/Identity/Registration', {
             Login: this.state.username,
-            PasswordH: this.state.password,
+            Password: this.state.password,
         })
             .then((res) => {
                 console.log("this is res", res);  

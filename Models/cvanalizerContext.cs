@@ -7,6 +7,7 @@ namespace CVanalizer.Models
     public partial class cvanalizerContext : DbContext
     {
         public virtual DbSet<Applicant> Applicant { get; set; }
+        public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<Skills> Skills { get; set; }
         public virtual DbSet<Technologies> Technologies { get; set; }
         public virtual DbSet<Users> Users { get; set; }
@@ -30,8 +31,22 @@ namespace CVanalizer.Models
                 entity.Property(e => e.Name).IsRequired();
 
                 entity.Property(e => e.SerName).IsRequired();
-            });          
-       
+
+                entity.HasOne(d => d.LocationNavigation)
+                    .WithMany(p => p.Applicant)
+                    .HasForeignKey(d => d.Location)
+                    .HasConstraintName("FK_Applicant_Location");
+            });
+
+            modelBuilder.Entity<Location>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Lname)
+                    .IsRequired()
+                    .HasColumnName("LName");
+            });
+
             modelBuilder.Entity<Skills>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -68,7 +83,7 @@ namespace CVanalizer.Models
 
                 entity.Property(e => e.Login).IsRequired();
 
-                entity.Property(e => e.PasswordH).IsRequired();
+                entity.Property(e => e.Password).IsRequired();
             });
         }
     }
