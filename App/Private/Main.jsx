@@ -47,7 +47,6 @@ export default class Main extends React.Component {
 
         axios.post(url, params, config)
             .then((res) => {
-           
                 this.setState({ Candidates: res.data })
                
                 this.setState({ FilteredApplicants: this.FilterApplicants() });
@@ -82,7 +81,11 @@ export default class Main extends React.Component {
                     var nc = {
                         uid: cs[0].uid,
                         name: cs[0].uName,
-                        sname: cs[0].suName,                        
+                        sname: cs[0].suName,
+                        age: cs[0].age,
+                        loc: cs[0].location,
+                        spec: cs[0].spec,
+                        pos: cs[0].pos,
                         tech: cs.map(function (c) {                    
                             var tc = { tname: c.tName, exp: c.exp, tid: c.tId, tg: c.tGroup };
                             return tc; 
@@ -93,6 +96,7 @@ export default class Main extends React.Component {
                 }
 
             }
+            console.log(filteredCandidates)
             return filteredCandidates;           
         }       
     }

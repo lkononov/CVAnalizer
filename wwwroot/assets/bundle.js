@@ -29376,7 +29376,6 @@ var Main = function (_React$Component) {
             };
 
             _axios2.default.post(url, params, config).then(function (res) {
-
                 _this2.setState({ Candidates: res.data });
 
                 _this2.setState({ FilteredApplicants: _this2.FilterApplicants() });
@@ -29416,6 +29415,10 @@ var Main = function (_React$Component) {
                             uid: cs[0].uid,
                             name: cs[0].uName,
                             sname: cs[0].suName,
+                            age: cs[0].age,
+                            loc: cs[0].location,
+                            spec: cs[0].spec,
+                            pos: cs[0].pos,
                             tech: cs.map(function (c) {
                                 var tc = { tname: c.tName, exp: c.exp, tid: c.tId, tg: c.tGroup };
                                 return tc;
@@ -29425,6 +29428,7 @@ var Main = function (_React$Component) {
                         filteredCandidates.push(nc);
                     }
                 }
+                console.log(filteredCandidates);
                 return filteredCandidates;
             }
         }
@@ -29699,7 +29703,8 @@ var Candidates = function (_React$Component) {
                                     'Position:'
                                 ),
                                 _react2.default.createElement('p', null),
-                                ' Junior'
+                                ' ',
+                                applicant.pos
                             ),
                             _react2.default.createElement(
                                 'div',
@@ -29710,7 +29715,8 @@ var Candidates = function (_React$Component) {
                                     'Spec:'
                                 ),
                                 _react2.default.createElement('p', null),
-                                ' Full Stack'
+                                ' ',
+                                applicant.spec
                             ),
                             _react2.default.createElement(
                                 'div',
@@ -29721,7 +29727,8 @@ var Candidates = function (_React$Component) {
                                     'Age:'
                                 ),
                                 _react2.default.createElement('p', null),
-                                ' 26'
+                                ' ',
+                                applicant.age
                             ),
                             _react2.default.createElement(
                                 'div',
@@ -29732,7 +29739,8 @@ var Candidates = function (_React$Component) {
                                     'Location:'
                                 ),
                                 _react2.default.createElement('p', null),
-                                ' Opole'
+                                ' ',
+                                applicant.loc
                             )
                         )
                     );

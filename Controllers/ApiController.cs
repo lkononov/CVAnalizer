@@ -27,13 +27,18 @@ namespace CVanalizer.Controllers
                              on t.Tid equals s.Tid
                              join a in db.Applicant
                              on s.Uid equals a.Uid
+                             join l in db.Location
+                             on a.Location equals l.Id
                              select new
                              {
                                  uid = a.Uid,
                                  uName = a.Name,
                                  suName = a.SerName,
                                  portfolio = a.Portfolio,
-
+                                 Location = l.Lname,
+                                 Age = a.Age,
+                                 Pos = a.Position,
+                                 Spec = a.Spec,
                                  exp = s.Experience,
 
                                  tName = t.Name,

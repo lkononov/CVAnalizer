@@ -47,19 +47,19 @@ export default class Candidates extends React.Component {
                         <div className="row">
                             <div className="col-md-3">
                                 <b>Position:</b>
-                                <p /> Junior
+                                <p /> {applicant.pos}
                             </div>
                             <div className="col-md-3">
                                 <b>Spec:</b>
-                                <p /> Full Stack
+                                <p /> {applicant.spec}
                             </div>
                             <div className="col-md-3">
                                 <b>Age:</b>
-                                <p /> 26
+                                <p /> {applicant.age}
                             </div>
                             <div className="col-md-3">
                                 <b>Location:</b>
-                                <p /> Opole
+                                <p /> {applicant.loc}
                             </div>
                         </div>
 
